@@ -6,11 +6,22 @@ using UnityEngine;
 public class MoveToGoalAgent : Agent
 {
     [SerializeField] private Transform goal;
-    [SerializeField] private Transform resetTo;
     [SerializeField] private float moveSpeed;
     [SerializeField] private Material winMat;
     [SerializeField] private Material loseMat;
     [SerializeField] private MeshRenderer floorMesh;
+
+    private float possibleSpace = 50f;
+
+    public override void OnEpisodeBegin()
+    {
+        transform.localPosition = new Vector3(Random.Range(-possibleSpace, possibleSpace), 1f,
+            Random.Range(-possibleSpace, possibleSpace));
+        goal.localPosition = new Vector3(Random.Range(-possibleSpace, possibleSpace), 1f,
+            Random.Range(-possibleSpace, possibleSpace));
+
+        transform.rotation = Quaternion.Euler(0, 0, 0);
+    }
 
     public override void CollectObservations(VectorSensor sensor)
     {
@@ -28,7 +39,7 @@ public class MoveToGoalAgent : Agent
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Wall"))
+        if (other.CompareTag("Wall"))
         {
             SetReward(-1f);
             floorMesh.material = loseMat;
@@ -48,11 +59,5 @@ public class MoveToGoalAgent : Agent
         ActionSegment<float> contActions = actionsOut.ContinuousActions;
         contActions[0] = Input.GetAxisRaw("Horizontal");
         contActions[1] = Input.GetAxisRaw("Vertical");
-    }
-
-    public override void OnEpisodeBegin()
-    {
-        transform.position = resetTo.position;
-        transform.rotation = resetTo.rotation;
     }
 }
