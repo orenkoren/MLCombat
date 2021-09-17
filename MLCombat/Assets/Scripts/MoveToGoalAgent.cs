@@ -1,3 +1,4 @@
+using StarterAssets;
 using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
@@ -10,6 +11,7 @@ public class MoveToGoalAgent : Agent
     [SerializeField] private Material winMat;
     [SerializeField] private Material loseMat;
     [SerializeField] private MeshRenderer floorMesh;
+    [SerializeField] private StarterAssetsInputs inputs;
 
     private float possibleSpace = 50f;
 
@@ -57,7 +59,9 @@ public class MoveToGoalAgent : Agent
     {
         //base.Heuristic(actionsOut);
         ActionSegment<float> contActions = actionsOut.ContinuousActions;
-        contActions[0] = Input.GetAxisRaw("Horizontal");
-        contActions[1] = Input.GetAxisRaw("Vertical");
+        contActions[0] = inputs.move.x;
+        contActions[1] = inputs.move.y;
     }
+
+    
 }
