@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac411c09435d354428f737823b015055, type: 3}
+  m_Name: BowCombo1
+  m_EditorClassIdentifier: 
+  AbilityInfo:
+    Name: BowCombo1
+    BaseDamage: 45
+    HitRadius: 1.5
+    HitRadiusArcDegrees: 10
+    Range: 40
+    Cooldown: 0
+    DamageReduction: 0
+    SelfSlow: 0
+    ApplySlow: 50
+    SlowDuration: 1
+    Dot: 0
+    DotInterval: 0
+    TickAmount: 0
+    Icon: {fileID: 0}
+    Type: 0
+    RetCost: 0
+    RetGain: 0.2
+    SancCost: 0
+    SancGain: 0
+    Sound: {fileID: 0}
+    ActionSlot: 0
+    Keybind: 0
+    IsChanneled: 0
+    DamageText: 
+    IsStun: 0
+    StunDuration: 0
+    VerticalForce: 0
+    HorizontalForce: 0
+    Conditions: 
