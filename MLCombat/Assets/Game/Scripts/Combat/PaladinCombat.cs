@@ -13,6 +13,8 @@ namespace MiddleAges.Combat
         private Dictionary<KeyCode, AbilityData> possibleActions;
         private AbilityCombos combos;
         private AbilityConditionManager conditionManager;
+        private bool isAgent;
+        [HideInInspector] public KeyCode currentKeyAgent;
 
         #endregion Private Properties
 
@@ -21,6 +23,7 @@ namespace MiddleAges.Combat
         protected override void Start()
         {
             base.Start();
+            isAgent = LearningManager.Instance.isAgent;
             possibleActions = new Dictionary<KeyCode, AbilityData>();
             combos = GetComponent<AbilityCombos>();
             conditionManager = GetComponent<AbilityConditionManager>();
@@ -36,9 +39,13 @@ namespace MiddleAges.Combat
             if (!combatEnabled) return;
             foreach (var action in possibleActions)
             {
-                if (Input.GetKeyDown(action.Key))
+                print(currentKeyAgent);
+                if (isAgent ? currentKeyAgent == action.Key : Input.GetKeyDown(action.Key))
+                {
+                    print("using" + action.Value.Name);
                     UseAbility(action.Value);
-                if (Input.GetKeyUp(action.Key))
+                }
+                if (!isAgent && Input.GetKeyUp(action.Key))
                     FinishChanneledAbility(action.Value);
             }
         }

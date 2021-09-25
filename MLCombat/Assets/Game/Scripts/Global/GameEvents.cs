@@ -11,9 +11,11 @@ namespace MiddleAges.Events
 
         public event EventHandler<int> LevelUpListeners;
         public event EventHandler<AbilityEventArgs> DeathListeners;
+        public event EventHandler<int> ResurrectionListeners;
 
         public void FireLevelChanged(object sender, int level) => LevelUpListeners?.Invoke(sender, level);
-        public void FireDeath(object sender, AbilityEventArgs abilityArgs) => DeathListeners.Invoke(sender, abilityArgs);
+        public void FireDeath(object sender, AbilityEventArgs abilityArgs) => DeathListeners?.Invoke(sender, abilityArgs);
+        public void FireResurrection(object sender, int placeHolder) => ResurrectionListeners?.Invoke(sender, placeHolder);
 
         #endregion State Events
 

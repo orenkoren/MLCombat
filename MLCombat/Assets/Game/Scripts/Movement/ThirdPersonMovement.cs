@@ -1,5 +1,4 @@
 ﻿using MiddleAges.Entities;
-using MiddleAges.Global;
 using UnityEngine;
 
 
@@ -8,6 +7,9 @@ namespace MiddleAges.Motion
     public class ThirdPersonMovement : Movement
     {
         public float turnSmoothTime = 0.1f;
+        private bool isAgent = false;
+        [HideInInspector] public float agentMoveX;
+        [HideInInspector] public float agentMoveZ;
 
         private Player player;
         private float turnSmoothVelocity;
@@ -26,14 +28,15 @@ namespace MiddleAges.Motion
         {
             base.Start();
             player = (Player)entity;
+            isAgent = LearningManager.Instance.isAgent;
         }
 
         protected override void FixedUpdate()
         {
             if (entity.IsAlive() == false) return;
             base.FixedUpdate();
-            horizontalInput = Input.GetAxis("Horizontal"); // input x
-            verticalInput = Input.GetAxis("Vertical"); //input z
+            horizontalInput = isAgent ? agentMoveX : Input.GetAxis("Horizontal"); // input x
+            verticalInput = isAgent ? agentMoveZ : Input.GetAxis("Vertical"); //input z
             camAngle = (player).playerCam.eulerAngles.y;
             inputDirection = new Vector3(horizontalInput, 0, verticalInput).normalized;
 

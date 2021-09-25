@@ -86,6 +86,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 2.28
+  m_PresetInfoIsWorld: 1
 --- !u!114 &502779213
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1386,60 +1387,64 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1703519318}
     - target: {fileID: 5929804190709469360, guid: b3a9ad9339315a04ea317a5ff8f475a1, type: 3}
-      propertyPath: TrackAnimations.Array.size
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 5929804190709469360, guid: b3a9ad9339315a04ea317a5ff8f475a1, type: 3}
       propertyPath: events
       value: 
       objectReference: {fileID: 1703519318}
     - target: {fileID: 5929804190709469360, guid: b3a9ad9339315a04ea317a5ff8f475a1, type: 3}
-      propertyPath: TrackAnimations.Array.data[7].AbilityName
-      value: 
+      propertyPath: TrackAnimations.Array.size
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 5929804190709469360, guid: b3a9ad9339315a04ea317a5ff8f475a1, type: 3}
       propertyPath: TrackAnimations.Array.data[7].StateTag
       value: Stun
       objectReference: {fileID: 0}
     - target: {fileID: 5929804190709469360, guid: b3a9ad9339315a04ea317a5ff8f475a1, type: 3}
-      propertyPath: TrackAnimations.Array.data[7].ShouldRoot
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5929804190709469360, guid: b3a9ad9339315a04ea317a5ff8f475a1, type: 3}
       propertyPath: TrackAnimations.Array.data[8].StateTag
       value: Backpedal
-      objectReference: {fileID: 0}
-    - target: {fileID: 5929804190709469360, guid: b3a9ad9339315a04ea317a5ff8f475a1, type: 3}
-      propertyPath: TrackAnimations.Array.data[8].ShouldRoot
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5929804190709469360, guid: b3a9ad9339315a04ea317a5ff8f475a1, type: 3}
       propertyPath: TrackAnimations.Array.data[9].StateTag
       value: DamageTaken1
       objectReference: {fileID: 0}
     - target: {fileID: 5929804190709469360, guid: b3a9ad9339315a04ea317a5ff8f475a1, type: 3}
-      propertyPath: TrackAnimations.Array.data[9].ShouldRoot
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5929804190709469360, guid: b3a9ad9339315a04ea317a5ff8f475a1, type: 3}
       propertyPath: TrackAnimations.Array.data[10].StateTag
       value: DamageTaken2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5929804190709469360, guid: b3a9ad9339315a04ea317a5ff8f475a1, type: 3}
-      propertyPath: TrackAnimations.Array.data[10].ShouldRoot
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5929804190709469360, guid: b3a9ad9339315a04ea317a5ff8f475a1, type: 3}
       propertyPath: TrackAnimations.Array.data[11].StateTag
       value: DamageTaken3
       objectReference: {fileID: 0}
     - target: {fileID: 5929804190709469360, guid: b3a9ad9339315a04ea317a5ff8f475a1, type: 3}
+      propertyPath: TrackAnimations.Array.data[7].ShouldRoot
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5929804190709469360, guid: b3a9ad9339315a04ea317a5ff8f475a1, type: 3}
+      propertyPath: TrackAnimations.Array.data[8].ShouldRoot
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5929804190709469360, guid: b3a9ad9339315a04ea317a5ff8f475a1, type: 3}
+      propertyPath: TrackAnimations.Array.data[9].ShouldRoot
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5929804190709469360, guid: b3a9ad9339315a04ea317a5ff8f475a1, type: 3}
+      propertyPath: TrackAnimations.Array.data[10].ShouldRoot
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5929804190709469360, guid: b3a9ad9339315a04ea317a5ff8f475a1, type: 3}
       propertyPath: TrackAnimations.Array.data[11].ShouldRoot
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5929804190709469360, guid: b3a9ad9339315a04ea317a5ff8f475a1, type: 3}
+      propertyPath: TrackAnimations.Array.data[7].AbilityName
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5929804190709469360, guid: b3a9ad9339315a04ea317a5ff8f475a1, type: 3}
       propertyPath: TrackAnimations.Array.data[6].ShouldRotationRoot
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7423256648892445755, guid: b3a9ad9339315a04ea317a5ff8f475a1, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7423256648892445755, guid: b3a9ad9339315a04ea317a5ff8f475a1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1454,6 +1459,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7423256648892445755, guid: b3a9ad9339315a04ea317a5ff8f475a1, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7423256648892445755, guid: b3a9ad9339315a04ea317a5ff8f475a1, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0
       objectReference: {fileID: 0}
@@ -1463,14 +1472,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7423256648892445755, guid: b3a9ad9339315a04ea317a5ff8f475a1, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7423256648892445755, guid: b3a9ad9339315a04ea317a5ff8f475a1, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7423256648892445755, guid: b3a9ad9339315a04ea317a5ff8f475a1, type: 3}
-      propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7423256648892445755, guid: b3a9ad9339315a04ea317a5ff8f475a1, type: 3}

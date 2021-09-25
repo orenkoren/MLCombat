@@ -19,7 +19,7 @@ MonoBehaviour:
     HitRadius: 2
     HitRadiusArcDegrees: 120
     Range: 0
-    Cooldown: 0
+    Cooldown: 0.5
     ApplySlow: 0
     SlowDuration: 0
     Dot: 0
@@ -32,6 +32,8 @@ MonoBehaviour:
     IsStun: 0
     StunDuration: 0
     VerticalForce: 0
+    KnockbackTime: 0
+    KnockbackPower: 0
     Conditions: 01000000
     RelatedAbilities:
     - Ability: {fileID: 11400000, guid: bbe3910e9e630744cb54d0094e5f10dc, type: 2}

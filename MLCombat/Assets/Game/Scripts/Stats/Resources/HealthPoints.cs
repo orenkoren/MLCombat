@@ -1,5 +1,6 @@
 ﻿using MiddleAges.Entities;
 using MiddleAges.Events;
+using System;
 using UnityEngine;
 
 namespace MiddleAges.Resources
@@ -16,6 +17,7 @@ namespace MiddleAges.Resources
             entity = GetComponentInParent<Entity>();
             events.DamageTakenListeners += TakeDamage;
             events.HealingTakenListeners += HealSelf;
+            events.ResurrectionListeners += Ressurect;
         }
 
         private void Update()
@@ -38,10 +40,16 @@ namespace MiddleAges.Resources
             IncResource(args.HealingAmount);
         }
 
+        private void Ressurect(object sender, int e)
+        {
+            SetCurrentResourcePoints(GetMaxResourcePoints());
+        }
+
         private void OnDestroy()
         {
             events.DamageTakenListeners -= TakeDamage;
             events.HealingTakenListeners -= HealSelf;
+            events.ResurrectionListeners -= Ressurect;
         }
     }
 }

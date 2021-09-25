@@ -1,4 +1,5 @@
 ﻿using MiddleAges.Events;
+using System;
 using UnityEngine;
 
 public class AnimatorEvents : MonoBehaviour
@@ -11,10 +12,17 @@ public class AnimatorEvents : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         events.DeathListeners += SetTrigger;
+        events.ResurrectionListeners += Resurrect;
         events.AbilityDequeueListeners += SetBool;
         events.AbilityQueuedListeners += SetTrigger;
         events.GroundedListeners += SetBool;
 
+    }
+
+    private void Resurrect(object sender, int e)
+    {
+        animator.SetTrigger("Resurrect");
+        animator.SetBool("Death", false);
     }
 
     private void SetTrigger(object sender, AbilityEventArgs abilityArgs)
@@ -43,5 +51,6 @@ public class AnimatorEvents : MonoBehaviour
         events.AbilityDequeueListeners -= SetBool;
         events.AbilityQueuedListeners -= SetTrigger;
         events.GroundedListeners -= SetBool;
+        events.ResurrectionListeners -= Resurrect;
     }
 }

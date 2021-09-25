@@ -1,23 +1,23 @@
 {
-    "MoveToGoal": {
+    "PlayerAgent": {
         "checkpoints": [
             {
-                "steps": 329973,
-                "file_path": "results\\ppo\\MoveToGoal\\MoveToGoal-329973.onnx",
-                "reward": 0.9322033898305084,
-                "creation_time": 1631866108.8124135,
+                "steps": 800,
+                "file_path": "results\\ppo\\PlayerAgent\\PlayerAgent-800.onnx",
+                "reward": 0.0,
+                "creation_time": 1632583144.6457925,
                 "auxillary_file_paths": [
-                    "results\\ppo\\MoveToGoal\\MoveToGoal-329973.pt"
+                    "results\\ppo\\PlayerAgent\\PlayerAgent-800.pt"
                 ]
             }
         ],
         "final_checkpoint": {
-            "steps": 329973,
-            "file_path": "results\\ppo\\MoveToGoal.onnx",
-            "reward": 0.9322033898305084,
-            "creation_time": 1631866108.8124135,
+            "steps": 800,
+            "file_path": "results\\ppo\\PlayerAgent.onnx",
+            "reward": 0.0,
+            "creation_time": 1632583144.6457925,
             "auxillary_file_paths": [
-                "results\\ppo\\MoveToGoal\\MoveToGoal-329973.pt"
+                "results\\ppo\\PlayerAgent\\PlayerAgent-800.pt"
             ]
         }
     },

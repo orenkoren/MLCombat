@@ -35,6 +35,7 @@ public class MoveToGoalAgent : Agent
     {
         float moveX = actions.ContinuousActions[0];
         float moveZ = actions.ContinuousActions[1];
+        print(moveX);
 
         transform.localPosition += new Vector3 { x = moveX, y = 0, z = moveZ } * Time.deltaTime * moveSpeed;
     }

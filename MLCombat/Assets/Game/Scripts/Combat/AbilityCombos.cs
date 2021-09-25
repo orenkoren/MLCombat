@@ -13,9 +13,12 @@ namespace MiddleAges.Combat
         private PaladinCombat combat;
         private ChannelAbilities channelManager;
         private AbilityConditionManager conditionManager;
+        private bool isAgent;
+        [HideInInspector] public KeyCode currentKeyAgent;
 
         void Start()
         {
+            isAgent = LearningManager.Instance.isAgent;
             events = GetComponent<GameEvents>();
             combat = GetComponent<PaladinCombat>();
             channelManager = GetComponent<ChannelAbilities>();
@@ -46,8 +49,9 @@ namespace MiddleAges.Combat
         {
             foreach (var combo in Combos)
             {
-                if (Input.GetKeyDown(combo.ComboKey))
+                if (isAgent ? currentKeyAgent == combo.ComboKey : Input.GetKeyDown(combo.ComboKey))
                 {
+                    print("using combo " + combo.ComboKey);
                     AbilityNameWithTrigger abilityToTrigger = combo.Abilities[combo.ComboStage];
                     if (combo.ComboStage == 0 && (conditionManager.IsAbilityUseable(abilityToTrigger.Ability.AbilityInfo) ||
                         (channelManager.IsCurrentlyChanneling() &&
