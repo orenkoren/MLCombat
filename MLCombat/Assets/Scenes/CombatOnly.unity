@@ -739,7 +739,7 @@ PrefabInstance:
       objectReference: {fileID: 925567981}
     - target: {fileID: 5823782380796029649, guid: b15c538c8207c78418a7bf07395ec609, type: 3}
       propertyPath: MaxStep
-      value: 0
+      value: 5000
       objectReference: {fileID: 0}
     - target: {fileID: 5823782380796029649, guid: b15c538c8207c78418a7bf07395ec609, type: 3}
       propertyPath: startPos

@@ -2,6 +2,7 @@ using MiddleAges.Combat;
 using MiddleAges.Events;
 using MiddleAges.Motion;
 using MiddleAges.Resources;
+using System;
 using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
@@ -39,6 +40,13 @@ public class PlayerCombatAgent : Agent
         playerHp = player.GetComponentInChildren<HealthPoints>().GetMaxResourcePoints();
         enemyHp = enemy.GetComponentInChildren<HealthPoints>().GetMaxResourcePoints();
         enemyEvents.StunStateListeners += EnemyStunned;
+        enemyEvents.DeathListeners += FinishRound;
+        playerEvents.DeathListeners += FinishRound;
+    }
+
+    private void FinishRound(object sender, AbilityEventArgs e)
+    {
+        EndEpisode();
     }
 
     private void EnemyStunned(object sender, bool isStunned)
@@ -123,18 +131,26 @@ public class PlayerCombatAgent : Agent
         ActionSegment<int> discActions = actionsOut.DiscreteActions;
         contActions[0] = Input.GetAxis("Horizontal");
         contActions[1] = Input.GetAxis("Vertical");
-        discActions[0] = Input.GetKeyDown(KeyCode.Mouse0) ? 0 : 9;
-        discActions[0] = Input.GetKeyDown(KeyCode.Q) ? 1 : 9;
-        discActions[0] = Input.GetKeyDown(KeyCode.E) ? 2 : 9;
-        discActions[0] = Input.GetKeyDown(KeyCode.R) ? 3 : 9;
-        discActions[0] = Input.GetKeyDown(KeyCode.F) ? 4 : 9;
-        discActions[0] = Input.GetKeyDown(KeyCode.C) ? 5 : 9;
-        discActions[0] = Input.GetKeyDown(KeyCode.V) ? 6 : 9;
-        discActions[0] = Input.GetKeyDown(KeyCode.Mouse1) ? 7 : 9;
-        discActions[0] = Input.GetKeyDown(KeyCode.LeftShift) ? 8 : 9;
 
-
-
+        discActions[0] = 9;
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+            discActions[0] = 0;
+        if (Input.GetKeyDown(KeyCode.Q))
+            discActions[0] = 1;
+        if (Input.GetKeyDown(KeyCode.E))
+            discActions[0] = 2;
+        if (Input.GetKeyDown(KeyCode.R))
+            discActions[0] = 3;
+        if (Input.GetKeyDown(KeyCode.F))
+            discActions[0] = 4;
+        if (Input.GetKeyDown(KeyCode.C))
+            discActions[0] = 5;
+        if (Input.GetKeyDown(KeyCode.V))
+            discActions[0] = 6;
+        if (Input.GetKey(KeyCode.Mouse1))
+            discActions[0] = 7;
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+            discActions[0] = 8;
     }
 
 
@@ -145,8 +161,9 @@ public class PlayerCombatAgent : Agent
             isFirstTime = false;
             return;
         }
-        playerEvents.FireResurrection(this, 0);
-        enemyEvents.FireResurrection(this, 0);
+        print("resurect");
+        playerEvents.FireResurrection(player, 0);
+        enemyEvents.FireResurrection(enemy, 0);
         player.transform.position = startPos.position;
 
     }

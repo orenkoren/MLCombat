@@ -11,8 +11,8 @@ public class AnimatorEvents : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
-        events.DeathListeners += SetTrigger;
-        events.ResurrectionListeners += Resurrect;
+        //events.DeathListeners += SetTrigger;
+        //events.ResurrectionListeners += Resurrect;
         events.AbilityDequeueListeners += SetBool;
         events.AbilityQueuedListeners += SetTrigger;
         events.GroundedListeners += SetBool;
@@ -47,10 +47,10 @@ public class AnimatorEvents : MonoBehaviour
 
     private void OnDestroy()
     {
-        events.DeathListeners -= SetTrigger;
+        //events.DeathListeners -= SetTrigger;
         events.AbilityDequeueListeners -= SetBool;
         events.AbilityQueuedListeners -= SetTrigger;
         events.GroundedListeners -= SetBool;
-        events.ResurrectionListeners -= Resurrect;
+        //events.ResurrectionListeners -= Resurrect;
     }
 }

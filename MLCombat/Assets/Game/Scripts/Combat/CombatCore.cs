@@ -54,6 +54,7 @@ namespace MiddleAges.Combat
             cooldownUtil = GetComponent<CooldownUtil>();
             events.AbilityExecutedListeners += UseAbility;
             events.DeathListeners += DisableCombat;
+            events.ResurrectionListeners += EnableCombat;
             events.GroundedListeners += DisableCombat;
         }
 
@@ -209,11 +210,17 @@ namespace MiddleAges.Combat
             combatEnabled = abilityArgs.AnimationParameters.BoolValue;
         }
 
+        private void EnableCombat(object sender, int e)
+        {
+            combatEnabled = true;
+        }
+
         private void OnDestroy()
         {
             events.AbilityExecutedListeners -= UseAbility;
             events.DeathListeners -= DisableCombat;
             events.GroundedListeners -= DisableCombat;
+            events.ResurrectionListeners -= EnableCombat;
         }
 
         #endregion Private Methods

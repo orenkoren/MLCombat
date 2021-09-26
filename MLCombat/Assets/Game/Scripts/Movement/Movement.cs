@@ -37,7 +37,8 @@ namespace MiddleAges.Motion
             events.RootListeners += ApplyRoot;
             events.RotationRootListeners += ApplyRotationRoot;
             events.StunStateListeners += DisableMovement;
-            events.DeathListeners += ChangeToDeathLayer;
+            //events.DeathListeners += ChangeToDeathLayer;
+            //events.ResurrectionListeners += RestoreLayer;
             events.GroundedListeners += ChangeGroundedState;
         }
 
@@ -145,6 +146,11 @@ namespace MiddleAges.Motion
             gameObject.layer = LayerMask.NameToLayer("Dead");
         }
 
+        private void RestoreLayer(object sender, int e)
+        {
+            ((GameObject)sender).layer = LayerMask.NameToLayer("");
+        }
+
         IEnumerator ApplyPeriodicSlow(AbilityData abilityData)
         {
             ApplySlow(abilityData.ApplySlow);
@@ -160,7 +166,8 @@ namespace MiddleAges.Motion
             events.RootListeners -= ApplyRoot;
             events.RotationRootListeners -= ApplyRotationRoot;
             events.StunStateListeners -= DisableMovement;
-            events.DeathListeners -= ChangeToDeathLayer;
+            //events.DeathListeners -= ChangeToDeathLayer;
+            //events.ResurrectionListeners -= RestoreLayer;
         }
     }
 }

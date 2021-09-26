@@ -15,6 +15,7 @@ namespace MiddleAges.Entities
         protected void Start()
         {
             events.DeathListeners += ApplyDeath;
+            events.ResurrectionListeners += ApplyRessurection;
         }
 
         private bool isAlive = true;
@@ -23,12 +24,13 @@ namespace MiddleAges.Entities
 
         public virtual void ApplyDeath(object sender, AbilityEventArgs arg) => isAlive = false;
 
-        public void ApplyRessurection() => isAlive = true;
+        public void ApplyRessurection(object sender, int placeHolder) => isAlive = true;
 
 
         private void OnDestroy()
         {
             events.DeathListeners -= ApplyDeath;
+            events.ResurrectionListeners -= ApplyRessurection;
         }
     }
 }
