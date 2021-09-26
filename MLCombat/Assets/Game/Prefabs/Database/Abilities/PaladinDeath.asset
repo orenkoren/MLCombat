@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac411c09435d354428f737823b015055, type: 3}
+  m_Name: PaladinDeath
+  m_EditorClassIdentifier: 
+  AbilityInfo:
+    Name: PaladinDeath
+    BaseDamage: 0
+    HitRadius: 0
+    Cooldown: 0
+    DamageReduction: 0
+    SelfSlow: 0
+    Icon: {fileID: 0}
+    Type: 0
+    ManaCost: 0
+    Sound: {fileID: 8300000, guid: 7611eaa2ca03b4ae6964bbf7e774de41, type: 3}
+    Effect: {fileID: 0}
+    ActionSlot: 0
+    Keybind: 0
+    VerticalForce: 0
+    HorizontalForce: 0

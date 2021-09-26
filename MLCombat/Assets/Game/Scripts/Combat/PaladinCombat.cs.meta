@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: a4452e6a6c8cdbc4993fe7b2aa6ce0f4
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - weapon: {instanceID: 0}
+  - personalCanvas: {instanceID: 0}
+  - heavyAttackIcon: {fileID: 7300112371630997248, guid: cc5365114a32c0a41b180d46413ccaf4, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

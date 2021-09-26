@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49f1fea1f07eda04b93a469d70945800, type: 3}
+  m_Name: Shield
+  m_EditorClassIdentifier: 
+  WeaponInfo:
+    Name: BlackRedShield
+    Icon: {fileID: 0}
+    WeaponDamage: 20
+    WeaponPrefab: {fileID: 176872, guid: d5057f6b497a4824f96ba53c0f074c3a, type: 3}
+    AnimatorOverride: {fileID: 0}
+    Location: 0

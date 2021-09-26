@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 69ab22faff84a004e939e611d8d6428a, type: 3}
+  m_Name: Kill My Friends
+  m_EditorClassIdentifier: 
+  QuestInfo:
+    Name: Kill My Friends
+    state: 1
+    type: 0
+    QuestGiver: {fileID: 4794089683602527759, guid: 2dd7675144e4f0a41807a12f553545c4, type: 3}
+    Objective: {fileID: 8236406926858729390, guid: 5da5e18cd29971a4599b199241183c69, type: 3}
+    NeededObjectiveCount: 10
+    CurrentObjectiveCount: 0
+    Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed efficitur
+      fermentum mi et ultrices. Nullam lobortis, massa sed hendrerit vehicula, lectus
+      ipsum venenatis leo, ut efficitur augue arcu sit amet ipsum. Integer facilisis
+      lorem ante, et mollis!!!!!!!!!!!!
+    CompletionDescription: 'Aliquam sollicitudin convallis dui ac pretium. Fusce
+      gravida diam at velit ultrices eleifend maximus vel enim. Quisque fringilla
+      nisi nulla, sed tincidunt enim lobortis sed. Proin tincidunt ullamcorper nibh,
+      at efficitur tellus euismod non. '
+    QuestLogDescription: 'Paladins Killed:'
+    ExperienceReward: 300

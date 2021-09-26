@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac411c09435d354428f737823b015055, type: 3}
+  m_Name: PaladinBlock
+  m_EditorClassIdentifier: 
+  AbilityInfo:
+    Name: PaladinBlock
+    BaseDamage: 0
+    HitRadius: 0
+    HitRadiusArcDegrees: 0
+    Range: 0
+    Cooldown: 0
+    DamageReduction: 60
+    SelfSlow: 60
+    ApplySlow: 0
+    SlowDuration: 0
+    Dot: 0
+    DotInterval: 0
+    TickAmount: 0
+    Icon: {fileID: 0}
+    Type: 2
+    RetCost: 0
+    RetGain: 0
+    SancCost: 0
+    SancGain: 0.5
+    Sound: {fileID: 0}
+    ActionSlot: 0
+    Keybind: 324
+    IsChanneled: 1
+    DamageText: Block
+    IsStun: 0
+    StunDuration: 0
+    VerticalForce: 0
+    HorizontalForce: 0
+    Conditions: 0100000000000000
