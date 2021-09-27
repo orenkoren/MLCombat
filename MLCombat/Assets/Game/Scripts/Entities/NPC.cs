@@ -13,8 +13,11 @@ namespace MiddleAges.Entities
 
         public override void ApplyDeath(object sender, AbilityEventArgs arg)
         {
-            base.ApplyDeath(sender, arg);
-            Destroy(gameObject, timeToDespawn);
+            if (LearningManager.Instance.isAgent == false)
+            {
+                base.ApplyDeath(sender, arg);
+                Destroy(gameObject, timeToDespawn);
+            }
         }
     }
 }

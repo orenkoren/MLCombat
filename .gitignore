@@ -67,3 +67,4 @@ FactoryGame/Assets/Plugins/FMOD/Resources/FMODStudioSettings.asset
 FactoryGame/Assets/Plugins/FMOD/Resources/FMODStudioSettings.asset.meta
 MLCombat/Assets/Asset Packs/
 MLCombat/venv/
+MLCombat/Assets/ML-Agents/Timers/CombatOnly_timers.json

@@ -2,22 +2,22 @@
     "PlayerCombatAgent": {
         "checkpoints": [
             {
-                "steps": 448,
-                "file_path": "results\\ttt3\\PlayerCombatAgent\\PlayerCombatAgent-448.onnx",
-                "reward": -0.5,
-                "creation_time": 1632611163.3623724,
+                "steps": 1624,
+                "file_path": "results\\ttt3\\PlayerCombatAgent\\PlayerCombatAgent-1624.onnx",
+                "reward": -1.9566666930913925,
+                "creation_time": 1632678400.9593484,
                 "auxillary_file_paths": [
-                    "results\\ttt3\\PlayerCombatAgent\\PlayerCombatAgent-448.pt"
+                    "results\\ttt3\\PlayerCombatAgent\\PlayerCombatAgent-1624.pt"
                 ]
             }
         ],
         "final_checkpoint": {
-            "steps": 448,
+            "steps": 1624,
             "file_path": "results\\ttt3\\PlayerCombatAgent.onnx",
-            "reward": -0.5,
-            "creation_time": 1632611163.3623724,
+            "reward": -1.9566666930913925,
+            "creation_time": 1632678400.9593484,
             "auxillary_file_paths": [
-                "results\\ttt3\\PlayerCombatAgent\\PlayerCombatAgent-448.pt"
+                "results\\ttt3\\PlayerCombatAgent\\PlayerCombatAgent-1624.pt"
             ]
         }
     },

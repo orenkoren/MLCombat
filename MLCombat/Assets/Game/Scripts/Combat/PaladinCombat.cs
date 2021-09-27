@@ -39,7 +39,6 @@ namespace MiddleAges.Combat
             if (!combatEnabled) return;
             foreach (var action in possibleActions)
             {
-                print(currentKeyAgent);
                 if (isAgent ? currentKeyAgent == action.Key : Input.GetKeyDown(action.Key))
                 {
                     print("using" + action.Value.Name);
