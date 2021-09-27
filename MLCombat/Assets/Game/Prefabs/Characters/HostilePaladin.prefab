@@ -805,7 +805,7 @@ MonoBehaviour:
   rb: {fileID: 6679617142753875205}
   events: {fileID: 1703519318}
   agent: {fileID: 3386526672185455351}
-  aggroRange: 200
+  aggroRange: 2000
   hostileMask:
     serializedVersion: 2
     m_Bits: 69632

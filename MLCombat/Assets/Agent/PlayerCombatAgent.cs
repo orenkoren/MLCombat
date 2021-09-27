@@ -115,7 +115,8 @@ public class PlayerCombatAgent : Agent
         else if (shouldUseV)
             combat.currentKeyAgent = KeyCode.V;
         else if (shouldBlock)
-            combat.currentKeyAgent = KeyCode.Mouse1;
+            combat.currentKeyAgent = KeyCode.None;
+        //combat.currentKeyAgent = KeyCode.Mouse1;
         else if (shouldDodge)
             combat.currentKeyAgent = KeyCode.LeftShift;
         else

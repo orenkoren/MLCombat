@@ -1,0 +1,29 @@
+{
+    "PlayerCombatAgent": {
+        "checkpoints": [
+            {
+                "steps": 2340,
+                "file_path": "results\\freestyle\\PlayerCombatAgent\\PlayerCombatAgent-2340.onnx",
+                "reward": 1.6500000059604645,
+                "creation_time": 1632689396.128855,
+                "auxillary_file_paths": [
+                    "results\\freestyle\\PlayerCombatAgent\\PlayerCombatAgent-2340.pt"
+                ]
+            }
+        ],
+        "final_checkpoint": {
+            "steps": 2340,
+            "file_path": "results\\freestyle\\PlayerCombatAgent.onnx",
+            "reward": 1.6500000059604645,
+            "creation_time": 1632689396.128855,
+            "auxillary_file_paths": [
+                "results\\freestyle\\PlayerCombatAgent\\PlayerCombatAgent-2340.pt"
+            ]
+        }
+    },
+    "metadata": {
+        "stats_format_version": "0.3.0",
+        "mlagents_version": "0.27.0",
+        "torch_version": "1.7.1+cu110"
+    }
+}
