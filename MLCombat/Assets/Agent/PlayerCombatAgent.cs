@@ -42,6 +42,12 @@ public class PlayerCombatAgent : Agent
         enemyEvents.StunStateListeners += EnemyStunned;
         enemyEvents.DeathListeners += FinishRound;
         playerEvents.DeathListeners += FinishRound;
+        playerEvents.DeathListeners += PlayerDied;
+    }
+
+    private void PlayerDied(object sender, AbilityEventArgs e)
+    {
+        AddReward(-1f);
     }
 
     private void FinishRound(object sender, AbilityEventArgs e)
@@ -172,5 +178,6 @@ public class PlayerCombatAgent : Agent
     {
         playerEvents.DamageTakenListeners -= PlayerTookDamage;
         enemyEvents.DamageTakenListeners -= EnemyTookDamage;
+        playerEvents.DeathListeners -= PlayerDied;
     }
 }
