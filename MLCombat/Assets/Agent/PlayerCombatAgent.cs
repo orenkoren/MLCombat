@@ -46,6 +46,7 @@ public class PlayerCombatAgent : Agent
 
     private void FinishRound(object sender, AbilityEventArgs e)
     {
+        print("ending episode");
         EndEpisode();
     }
 
@@ -59,14 +60,12 @@ public class PlayerCombatAgent : Agent
     private void PlayerTookDamage(object sender, DamageTakenEventArgs e)
     {
         float amount = -e.DamageAmount / playerHp;
-        print("reduced" + amount);
         AddReward(amount);
     }
 
     private void EnemyTookDamage(object sender, DamageTakenEventArgs e)
     {
         float amount = e.DamageAmount / enemyHp;
-        print("added" + amount);
         AddReward(amount);
     }
 

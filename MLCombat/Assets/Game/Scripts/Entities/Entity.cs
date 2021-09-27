@@ -14,23 +14,36 @@ namespace MiddleAges.Entities
 
         protected void Start()
         {
-            events.DeathListeners += ApplyDeath;
-            events.ResurrectionListeners += ApplyRessurection;
+            if (LearningManager.Instance.isAgent == false)
+            {
+                events.DeathListeners += ApplyDeath;
+                events.ResurrectionListeners += ApplyRessurection;
+            }
         }
 
         private bool isAlive = true;
 
         public bool IsAlive() => isAlive;
 
-        public virtual void ApplyDeath(object sender, AbilityEventArgs arg) => isAlive = false;
+        public virtual void ApplyDeath(object sender, AbilityEventArgs arg)
+        {
+            print("dieing");
+            isAlive = false;
+        }
 
-        public void ApplyRessurection(object sender, int placeHolder) => isAlive = true;
-
+        public void ApplyRessurection(object sender, int placeHolder)
+        {
+            print("applying ress");
+            isAlive = true;
+        }
 
         private void OnDestroy()
         {
-            events.DeathListeners -= ApplyDeath;
-            events.ResurrectionListeners -= ApplyRessurection;
+            if (LearningManager.Instance.isAgent == false)
+            {
+                events.DeathListeners -= ApplyDeath;
+                events.ResurrectionListeners -= ApplyRessurection;
+            }
         }
     }
 }
