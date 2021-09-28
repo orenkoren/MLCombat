@@ -412,11 +412,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5966114062386778914, guid: a324f3b9882f2ee4e8cfce4317a653e7, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.000000017189658
+      value: -0.000000017189658
       objectReference: {fileID: 0}
     - target: {fileID: 5966114062386778914, guid: a324f3b9882f2ee4e8cfce4317a653e7, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 7.584216e-10
+      value: -7.584216e-10
       objectReference: {fileID: 0}
     - target: {fileID: 5966114062805097815, guid: a324f3b9882f2ee4e8cfce4317a653e7, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1130,5 +1130,17 @@ PrefabInstance:
       propertyPath: startPos
       value: 
       objectReference: {fileID: 1024607585}
+    - target: {fileID: 5823782380796029649, guid: b15c538c8207c78418a7bf07395ec609, type: 3}
+      propertyPath: reqEveryFrames
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5823782380796029649, guid: b15c538c8207c78418a7bf07395ec609, type: 3}
+      propertyPath: reqEverySecond
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5823782380796029649, guid: b15c538c8207c78418a7bf07395ec609, type: 3}
+      propertyPath: reqWindowSecond
+      value: 0.1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b15c538c8207c78418a7bf07395ec609, type: 3}
