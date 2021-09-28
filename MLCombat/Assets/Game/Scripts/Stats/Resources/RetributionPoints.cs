@@ -1,5 +1,6 @@
 ﻿using MiddleAges.Database;
 using MiddleAges.Events;
+using System;
 
 namespace MiddleAges.Resources
 {
@@ -15,6 +16,12 @@ namespace MiddleAges.Resources
             abilities = GetComponentInParent<Abilities>();
             events.DamageDealtListeners += IncreaseRetribution;
             events.AbilityExecutedListeners += DecreaseRetribution;
+            events.ResurrectionListeners += RestorePoints;
+        }
+
+        private void RestorePoints(object sender, int e)
+        {
+            SetCurrentResourcePoints(GetMaxResourcePoints());
         }
 
         private void DecreaseRetribution(object sender, AbilityEventArgs abilityArgs)
@@ -25,6 +32,13 @@ namespace MiddleAges.Resources
         private void IncreaseRetribution(object sender, DamageDealtEventArgs eventArgs)
         {
             IncResource(eventArgs.AbilityData.RetGain);
+        }
+
+        private void OnDestroy()
+        {
+            events.DamageDealtListeners -= IncreaseRetribution;
+            events.AbilityExecutedListeners -= DecreaseRetribution;
+            events.ResurrectionListeners -= RestorePoints;
         }
     }
 }

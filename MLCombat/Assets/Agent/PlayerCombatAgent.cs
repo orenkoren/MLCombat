@@ -2,7 +2,6 @@ using MiddleAges.Combat;
 using MiddleAges.Events;
 using MiddleAges.Motion;
 using MiddleAges.Resources;
-using System;
 using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
@@ -13,15 +12,25 @@ public class PlayerCombatAgent : Agent
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject enemy;
     [SerializeField] private Transform startPos;
+    [SerializeField] private Transform center;
+    [SerializeField] private float reqEverySecond = 0.5f;
+    [SerializeField] private float reqWindowSecond = 0.1f;
+
 
     private ThirdPersonMovement movement;
     private PaladinCombat combat;
     private AbilityCombos combos;
+    private HealthPoints playerHpComp;
+    private HealthPoints enemyHpComp;
     private GameEvents playerEvents;
     private GameEvents enemyEvents;
     private bool isFirstTime = true;
-    private float playerHp;
-    private float enemyHp;
+    private float playerMaxHp;
+    private float enemyMaxHp;
+    private bool shouldUseActions = true;
+    private float currentTime = 0f;
+
+
 
     private void Start()
     {
@@ -35,14 +44,41 @@ public class PlayerCombatAgent : Agent
         combos = player.GetComponent<AbilityCombos>();
         playerEvents = player.GetComponent<GameEvents>();
         enemyEvents = enemy.GetComponent<GameEvents>();
+        playerHpComp = player.GetComponentInChildren<HealthPoints>();
+        enemyHpComp = enemy.GetComponentInChildren<HealthPoints>();
+        playerMaxHp = playerHpComp.GetMaxResourcePoints();
+        enemyMaxHp = enemyHpComp.GetMaxResourcePoints();
         playerEvents.DamageTakenListeners += PlayerTookDamage;
         enemyEvents.DamageTakenListeners += EnemyTookDamage;
-        playerHp = player.GetComponentInChildren<HealthPoints>().GetMaxResourcePoints();
-        enemyHp = enemy.GetComponentInChildren<HealthPoints>().GetMaxResourcePoints();
         enemyEvents.StunStateListeners += EnemyStunned;
         enemyEvents.DeathListeners += FinishRound;
         playerEvents.DeathListeners += FinishRound;
         playerEvents.DeathListeners += PlayerDied;
+        enemyEvents.DeathListeners += EnemyDied;
+        playerEvents.WallHitListeners += WallHit;
+    }
+
+    public void Update()
+    {
+        currentTime += Time.deltaTime;
+        if (currentTime > reqWindowSecond)
+            shouldUseActions = false;
+        if (currentTime >= reqEverySecond)
+        {
+            currentTime = 0f;
+            shouldUseActions = true;
+        }
+    }
+
+    private void WallHit(object sender, int e)
+    {
+        AddReward(-1f);
+        EndEpisode();
+    }
+
+    private void EnemyDied(object sender, AbilityEventArgs e)
+    {
+        AddReward(1f);
     }
 
     private void PlayerDied(object sender, AbilityEventArgs e)
@@ -65,27 +101,34 @@ public class PlayerCombatAgent : Agent
 
     private void PlayerTookDamage(object sender, DamageTakenEventArgs e)
     {
-        float amount = -e.DamageAmount / playerHp;
+        float amount = -e.DamageAmount / playerMaxHp;
         AddReward(amount);
     }
 
     private void EnemyTookDamage(object sender, DamageTakenEventArgs e)
     {
-        float amount = e.DamageAmount / enemyHp;
+        float amount = e.DamageAmount / enemyMaxHp;
         AddReward(amount);
     }
 
     public override void CollectObservations(VectorSensor sensor)
     {
+        var playerHasMoreHp = playerHpComp.GetCurrentResourcePoints() / playerMaxHp >= enemyHpComp.GetCurrentResourcePoints() / enemyMaxHp;
+
         //TODO: why is this messing up the decision requester?
-        sensor.AddObservation(enemy.transform.localPosition - player.transform.localPosition);
+        //sensor.AddObservation(enemy.transform.localPosition - player.transform.localPosition);
+        //sensor.AddObservation((player.transform.localPosition - center.localPosition).x);
+        //sensor.AddObservation((player.transform.localPosition - center.localPosition).z);
+        sensor.AddObservation(playerHasMoreHp);
+        sensor.AddObservation((enemy.transform.localPosition - player.transform.localPosition).x);
+        sensor.AddObservation((enemy.transform.localPosition - player.transform.localPosition).z);
     }
 
     public override void OnActionReceived(ActionBuffers actions)
     {
+
         float moveX = actions.ContinuousActions[0];
         float moveZ = actions.ContinuousActions[1];
-
         bool shouldAttack = actions.DiscreteActions[0] == 0;
         bool shouldUseQ = actions.DiscreteActions[0] == 1;
         bool shouldUseE = actions.DiscreteActions[0] == 2;
@@ -104,6 +147,14 @@ public class PlayerCombatAgent : Agent
             movement.agentMoveZ = moveZ;
         }
 
+        if (!shouldUseActions)
+        {
+            combat.currentKeyAgent = KeyCode.None;
+            combos.currentKeyAgent = KeyCode.None;
+            return;
+        }
+
+
         //apply combat logic
         if (shouldAttack)
             combos.currentKeyAgent = KeyCode.Mouse0;
@@ -116,7 +167,7 @@ public class PlayerCombatAgent : Agent
         else if (shouldUseF)
             combat.currentKeyAgent = KeyCode.F;
         else if (shouldUseC)
-            combat.currentKeyAgent = KeyCode.C;
+            combat.currentKeyAgent = KeyCode.None;
         else if (shouldUseV)
             combat.currentKeyAgent = KeyCode.V;
         else if (shouldBlock)
@@ -167,6 +218,7 @@ public class PlayerCombatAgent : Agent
             isFirstTime = false;
             return;
         }
+        shouldUseActions = true;
         print("resurect");
         playerEvents.FireResurrection(player, 0);
         enemyEvents.FireResurrection(enemy, 0);
@@ -178,6 +230,11 @@ public class PlayerCombatAgent : Agent
     {
         playerEvents.DamageTakenListeners -= PlayerTookDamage;
         enemyEvents.DamageTakenListeners -= EnemyTookDamage;
+        enemyEvents.StunStateListeners -= EnemyStunned;
+        enemyEvents.DeathListeners -= FinishRound;
+        playerEvents.DeathListeners -= FinishRound;
         playerEvents.DeathListeners -= PlayerDied;
+        enemyEvents.DeathListeners -= EnemyDied;
+        playerEvents.WallHitListeners -= WallHit;
     }
 }

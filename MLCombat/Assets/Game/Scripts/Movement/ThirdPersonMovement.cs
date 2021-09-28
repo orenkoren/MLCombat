@@ -71,7 +71,8 @@ namespace MiddleAges.Motion
         private void ApplyRotation()
         {
             if (IsRotationRooted()) return;
-            targetDirection = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg + player.playerCam.eulerAngles.y;
+            targetDirection = Mathf.Atan2(inputDirection.x, inputDirection.z) * Mathf.Rad2Deg +
+                 (isAgent ? 0 : player.playerCam.eulerAngles.y);
             smoothTargetAngle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetDirection, ref turnSmoothVelocity, turnSmoothTime);
             transform.rotation = CalculateRotation();
         }

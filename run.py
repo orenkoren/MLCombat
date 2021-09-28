@@ -1,7 +1,7 @@
 import torch
 import time
 
-dev = "gpu" #torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
+dev = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
 t1 = torch.randn(10000,1500)
 t2 = torch.randn(1500)
 
