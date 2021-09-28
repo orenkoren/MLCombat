@@ -1,5 +1,6 @@
 ﻿using MiddleAges.Database;
 using MiddleAges.Events;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -21,6 +22,12 @@ namespace MiddleAges.Utils
             abilities = GetComponent<Abilities>();
             events = GetComponent<GameEvents>();
             events.AbilityExecutedListeners += ApplyCooldown;
+            events.ResurrectionListeners += RestoreCooldowns;
+            InitiateCooldowns();
+        }
+
+        private void RestoreCooldowns(object sender, int e)
+        {
             InitiateCooldowns();
         }
 
@@ -73,6 +80,7 @@ namespace MiddleAges.Utils
         private void OnDestroy()
         {
             events.AbilityExecutedListeners -= ApplyCooldown;
+            events.ResurrectionListeners -= RestoreCooldowns;
         }
     }
 }

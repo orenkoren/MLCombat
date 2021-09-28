@@ -59,6 +59,7 @@ namespace MiddleAges.Events
 
         #region Motion Events
 
+        public event EventHandler<int> WallHitListeners; 
         public event EventHandler<AbilityEventArgs> VerticalMotionListeners;
         public event EventHandler<AbilityEventArgs> HorizontalMotionListeners;
         public event EventHandler<bool> RootListeners;
@@ -70,6 +71,7 @@ namespace MiddleAges.Events
         public void FireRoot(object sender, bool isRooted) => RootListeners.Invoke(sender, isRooted);
         public void FireRotationRoot(object sender, bool isRotationRooted) => RotationRootListeners.Invoke(sender, isRotationRooted);
         public void FireGrounded(object sender, AnimationEventArgs isGrounded) => GroundedListeners?.Invoke(sender, isGrounded);
+        public void FireWallHit(object sender, int placeholder) => WallHitListeners?.Invoke(sender, placeholder);
 
         #endregion Motion Events
 
