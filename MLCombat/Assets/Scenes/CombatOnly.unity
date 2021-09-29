@@ -1076,7 +1076,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5823782380796029648, guid: b15c538c8207c78418a7bf07395ec609, type: 3}
       propertyPath: m_BehaviorType
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5823782380796029648, guid: b15c538c8207c78418a7bf07395ec609, type: 3}
       propertyPath: m_BrainParameters.VectorActionSpaceType

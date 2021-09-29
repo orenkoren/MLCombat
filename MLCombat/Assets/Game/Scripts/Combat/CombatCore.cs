@@ -75,6 +75,10 @@ namespace MiddleAges.Combat
                     events.FireDamageDealt(gameObject, new DamageDealtEventArgs(abilityData, isCrit));
                 }
             }
+            else
+            {
+                events.FireAbilityMissed(gameObject, abilityData);
+            }
         }
 
         public virtual void HealSelf(AbilityData abilityData)

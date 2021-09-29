@@ -17,12 +17,12 @@ behaviors:
     reward_signals:
       extrinsic:
         gamma: 0.99
-        strength: 0.1
+        strength: 1.0
       gail:
         strength: 0.1
         demo_path: MLCombat/Assets/demos/PlayerCombatDemo.demo
     behavioral_cloning:
-        strength: 1.0
+        strength: 0.1
         demo_path: MLCombat/Assets/demos/PlayerCombatDemo.demo
     max_steps: 50000000000000000000000
     time_horizon: 64
