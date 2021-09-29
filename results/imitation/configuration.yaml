@@ -31,7 +31,7 @@ behaviors:
           goal_conditioning_type: hyper
       gail:
         gamma: 0.99
-        strength: 0.5
+        strength: 0.1
         network_settings:
           normalize: false
           hidden_units: 128
@@ -43,7 +43,7 @@ behaviors:
         encoding_size: null
         use_actions: false
         use_vail: false
-        demo_path: MLCombat/demos/PlayerCombatDemo.demo
+        demo_path: MLCombat/Assets/demos/PlayerCombatDemo.demo
     init_path: null
     keep_checkpoints: 5
     checkpoint_interval: 500000
@@ -53,9 +53,9 @@ behaviors:
     threaded: false
     self_play: null
     behavioral_cloning:
-      demo_path: MLCombat/demos/PlayerCombatDemo.demo
+      demo_path: MLCombat/Assets/demos/PlayerCombatDemo.demo
       steps: 0
-      strength: 0.5
+      strength: 0.1
       samples_per_update: 0
       num_epoch: null
       batch_size: null
@@ -63,7 +63,7 @@ env_settings:
   env_path: builds\MLCombat
   env_args: null
   base_port: 5005
-  num_envs: 1
+  num_envs: 4
   seed: -1
 engine_settings:
   width: 84

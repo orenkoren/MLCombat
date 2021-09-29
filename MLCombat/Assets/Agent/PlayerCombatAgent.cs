@@ -1,4 +1,5 @@
 using MiddleAges.Combat;
+using MiddleAges.Database;
 using MiddleAges.Events;
 using MiddleAges.Motion;
 using MiddleAges.Resources;
@@ -56,6 +57,25 @@ public class PlayerCombatAgent : Agent
         playerEvents.DeathListeners += PlayerDied;
         enemyEvents.DeathListeners += EnemyDied;
         playerEvents.WallHitListeners += WallHit;
+        enemyEvents.AbilityTriggeredListeners += EnemyAbilityTriggered;
+        enemyEvents.AbilityEndedListeners += EnemyAbilityEnded;
+        playerEvents.AbilityMissedListeners += PlayerMissed;
+    }
+
+    private void PlayerMissed(object sender, AbilityData e)
+    {
+        print("player missed with " + e.Name);
+        AddReward(-0.2f);
+    }
+
+    private void EnemyAbilityEnded(object sender, AbilityEventArgs abilityArgs)
+    {
+        // TODO: refactor class so we can tell which boolean to activate easily, using AbilityEventArgs
+    }
+
+    private void EnemyAbilityTriggered(object sender, AbilityEventArgs abilityArgs)
+    {
+        // TODO: refactor class so we can tell which boolean to activate easily, using AbilityEventArgs and AbilityData
     }
 
     public void Update()
@@ -236,5 +256,7 @@ public class PlayerCombatAgent : Agent
         playerEvents.DeathListeners -= PlayerDied;
         enemyEvents.DeathListeners -= EnemyDied;
         playerEvents.WallHitListeners -= WallHit;
+        enemyEvents.AbilityTriggeredListeners -= EnemyAbilityTriggered;
+        enemyEvents.AbilityEndedListeners -= EnemyAbilityEnded;
     }
 }

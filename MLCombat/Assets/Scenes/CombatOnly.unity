@@ -412,11 +412,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5966114062386778914, guid: a324f3b9882f2ee4e8cfce4317a653e7, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000017189658
+      value: 0.000000017189658
       objectReference: {fileID: 0}
     - target: {fileID: 5966114062386778914, guid: a324f3b9882f2ee4e8cfce4317a653e7, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -7.584216e-10
+      value: 7.584216e-10
       objectReference: {fileID: 0}
     - target: {fileID: 5966114062805097815, guid: a324f3b9882f2ee4e8cfce4317a653e7, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1076,7 +1076,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5823782380796029648, guid: b15c538c8207c78418a7bf07395ec609, type: 3}
       propertyPath: m_BehaviorType
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5823782380796029648, guid: b15c538c8207c78418a7bf07395ec609, type: 3}
       propertyPath: m_BrainParameters.VectorActionSpaceType

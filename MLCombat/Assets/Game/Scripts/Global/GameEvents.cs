@@ -27,9 +27,11 @@ namespace MiddleAges.Events
         public event EventHandler<AbilityEventArgs> AbilityReadyListeners;
         public event EventHandler<AbilityEventArgs> AbilityUsableListeners;
         public event EventHandler<AbilityEventArgs> AbilityEndedListeners;
+        public event EventHandler<AbilityData> AbilityMissedListeners;
         public event EventHandler<bool> StunStateListeners;
         public event EventHandler<bool> BlockFollowupStateListeners;
 
+        public void FireAbilityMissed(object sender, AbilityData abilityArgs) => AbilityMissedListeners?.Invoke(sender, abilityArgs);
         public void FireAbilityExecuted(object sender, AbilityEventArgs abilityArgs) => AbilityExecutedListeners.Invoke(sender, abilityArgs);
         public void FireAbilityTriggered(object sender, AbilityEventArgs abilityArgs) => AbilityTriggeredListeners?.Invoke(sender, abilityArgs);
         public void FireAbilityReady(object sender, AbilityEventArgs abilityArgs) => AbilityReadyListeners?.Invoke(sender, abilityArgs);
