@@ -51,7 +51,7 @@ namespace MiddleAges.Combat
             {
                 if (isAgent ? currentKeyAgent == combo.ComboKey : Input.GetKeyDown(combo.ComboKey))
                 {
-                    print("using combo " + combo.ComboKey);
+                    // print("using combo " + combo.ComboKey);
                     AbilityNameWithTrigger abilityToTrigger = combo.Abilities[combo.ComboStage];
                     if (combo.ComboStage == 0 && (conditionManager.IsAbilityUseable(abilityToTrigger.Ability.AbilityInfo) ||
                         (channelManager.IsCurrentlyChanneling() &&

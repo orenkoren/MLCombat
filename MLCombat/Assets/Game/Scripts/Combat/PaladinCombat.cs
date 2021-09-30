@@ -41,7 +41,7 @@ namespace MiddleAges.Combat
             {
                 if (isAgent ? currentKeyAgent == action.Key : Input.GetKeyDown(action.Key))
                 {
-                    print("using" + action.Value.Name);
+                    // print("using" + action.Value.Name);
                     UseAbility(action.Value);
                 }
                 if (!isAgent && Input.GetKeyUp(action.Key))
