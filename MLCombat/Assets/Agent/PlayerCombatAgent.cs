@@ -7,10 +7,12 @@ using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
 using Unity.MLAgents.Sensors;
 using UnityEngine;
+using System.Collections.Generic;
+
 
 public class PlayerCombatAgent : Agent
 {
-    [SerializeField] private GameObject player;
+    // [SerializeField] private GameObject player;
     [SerializeField] private GameObject enemy;
     [SerializeField] private Transform startPos;
     [SerializeField] private Transform center;
@@ -30,6 +32,7 @@ public class PlayerCombatAgent : Agent
     private float enemyMaxHp;
     private bool shouldUseActions = true;
     private float currentTime = 0f;
+    private Dictionary<string, int> enemyObservations = new Dictionary<string, int>();
 
 
 
@@ -40,12 +43,12 @@ public class PlayerCombatAgent : Agent
 
     private void CreateComponents()
     {
-        movement = player.GetComponent<ThirdPersonMovement>();
-        combat = player.GetComponent<PaladinCombat>();
-        combos = player.GetComponent<AbilityCombos>();
-        playerEvents = player.GetComponent<GameEvents>();
+        movement = GetComponent<ThirdPersonMovement>();
+        combat = GetComponent<PaladinCombat>();
+        combos = GetComponent<AbilityCombos>();
+        playerEvents = GetComponent<GameEvents>();
         enemyEvents = enemy.GetComponent<GameEvents>();
-        playerHpComp = player.GetComponentInChildren<HealthPoints>();
+        playerHpComp = GetComponentInChildren<HealthPoints>();
         enemyHpComp = enemy.GetComponentInChildren<HealthPoints>();
         playerMaxHp = playerHpComp.GetMaxResourcePoints();
         enemyMaxHp = enemyHpComp.GetMaxResourcePoints();
@@ -60,22 +63,34 @@ public class PlayerCombatAgent : Agent
         enemyEvents.AbilityTriggeredListeners += EnemyAbilityTriggered;
         enemyEvents.AbilityEndedListeners += EnemyAbilityEnded;
         playerEvents.AbilityMissedListeners += PlayerMissed;
+
+        enemyObservations.Add("Heal", 0);
+        enemyObservations.Add("PaladinBlock", 0);
+        enemyObservations.Add("PaladinCombo1", 0);
+        enemyObservations.Add("PaladinCombo2", 0);
+        enemyObservations.Add("PaladinCombo3", 0);
+        enemyObservations.Add("PaladHeavyAttack", 0);
+        enemyObservations.Add("Roll", 0);        
     }
 
     private void PlayerMissed(object sender, AbilityData e)
     {
-        print("player missed with " + e.Name);
-        AddReward(-0.2f);
+        if (e.Name == "Roll")
+            return;
+        else {
+            // print("player missed with " + e.Name);
+            AddReward(-0.05f);
+        }
     }
 
     private void EnemyAbilityEnded(object sender, AbilityEventArgs abilityArgs)
     {
-        // TODO: refactor class so we can tell which boolean to activate easily, using AbilityEventArgs
+        enemyObservations[abilityArgs.AbilityName] = 0;
     }
 
     private void EnemyAbilityTriggered(object sender, AbilityEventArgs abilityArgs)
     {
-        // TODO: refactor class so we can tell which boolean to activate easily, using AbilityEventArgs and AbilityData
+        enemyObservations[abilityArgs.AbilityName] = 1;
     }
 
     public void Update()
@@ -92,7 +107,7 @@ public class PlayerCombatAgent : Agent
 
     private void WallHit(object sender, int e)
     {
-        AddReward(-1f);
+        SetReward(-1f);
         EndEpisode();
     }
 
@@ -135,13 +150,14 @@ public class PlayerCombatAgent : Agent
     {
         var playerHasMoreHp = playerHpComp.GetCurrentResourcePoints() / playerMaxHp >= enemyHpComp.GetCurrentResourcePoints() / enemyMaxHp;
 
-        //TODO: why is this messing up the decision requester?
-        //sensor.AddObservation(enemy.transform.localPosition - player.transform.localPosition);
-        //sensor.AddObservation((player.transform.localPosition - center.localPosition).x);
-        //sensor.AddObservation((player.transform.localPosition - center.localPosition).z);
         sensor.AddObservation(playerHasMoreHp);
-        sensor.AddObservation((enemy.transform.localPosition - player.transform.localPosition).x);
-        sensor.AddObservation((enemy.transform.localPosition - player.transform.localPosition).z);
+        sensor.AddObservation(enemyObservations["Heal"]);
+        sensor.AddObservation(enemyObservations["PaladinBlock"]);
+        sensor.AddObservation(enemyObservations["PaladinCombo1"]);
+        sensor.AddObservation(enemyObservations["PaladinCombo2"]);
+        sensor.AddObservation(enemyObservations["PaladinCombo3"]);
+        sensor.AddObservation(enemyObservations["PaladHeavyAttack"]);
+        sensor.AddObservation(enemyObservations["Roll"]);
     }
 
     public override void OnActionReceived(ActionBuffers actions)
@@ -240,9 +256,9 @@ public class PlayerCombatAgent : Agent
         }
         shouldUseActions = true;
         print("resurect");
-        playerEvents.FireResurrection(player, 0);
+        playerEvents.FireResurrection(this, 0);
         enemyEvents.FireResurrection(enemy, 0);
-        player.transform.position = startPos.position;
+        transform.position = startPos.position;
 
     }
 
